@@ -1,0 +1,5 @@
+Webpack soluciona esse problema das Single Page Applications.
+
+Webpack permite dividir um bundle da aplicação em outros bundles menores que são carregados apenas quando forem utilizados pela aplicação, diminuindo assim o tempo de carregamento dessas aplicações e por conseguinte melhorando a experiência do usuário. 
+
+
