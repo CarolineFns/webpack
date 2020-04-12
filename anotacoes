@@ -2,4 +2,44 @@ Webpack soluciona esse problema das Single Page Applications.
 
 Webpack permite dividir um bundle da aplicação em outros bundles menores que são carregados apenas quando forem utilizados pela aplicação, diminuindo assim o tempo de carregamento dessas aplicações e por conseguinte melhorando a experiência do usuário. 
 
+<script src="dist/bundle.js"></script>
+
+npm uninstall babel-cli --save-dev
+npm uninstall systemjs --save
+
+npm install webpack@3.1.0 babel-core@6.25.0 --save-dev
+
+Nós desinstalamos o babel-cli e estamos este outro porque o Babel ainda será usado para a compilação dos arquivos.
+
+o Terminal, digitamos o --save-dev, por se tratar de uma dependêcia de desenvolvimento. Usaríamos apenas --save por ser uma dependência em tempo de produção.
+
+O babel-core nada mais é do que o núcleo do babel desprovido de sua linha de comando e que pode ser utilizado por outras ferramentas do mercado como Webpack.
+
+Webpack dispensa a utilização de um module loader, justamente por criar em bundles em tempo de desenvolvimento, que nada mais são do que scripts que agregam outros módulos da aplicação.
+
+o módulo que será carregado primeiramente é o app.js, e com a ajuda do Webpack, serão desenvolvidas as dependências do módulo
+
+const path = require('path');
+
+module.exports = {
+    entry: './app-src/app.js',
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist')
+    }
+}  
+
+entry - o ponto de entrada - e especificamos qual será o primeiro módulo carregado
+
+output - onde será gravado o bundle do final, que será resolvido no módulo inicial. o Webpack vai procurar todas as dependências e resolverá isso por nós, gerando um grande arquivo no fim
+
+no path do output, definiremos que ele é o resultado de path.resolve
+
+__dirname - variável do NodeJS - informa qual a diretório do webpack.config
+
+path.resolve() criará o caminho completo até a pasta dist, com base na pasta client
+
+
+
+.
 
