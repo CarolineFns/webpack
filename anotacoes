@@ -50,6 +50,9 @@ npm install cross-env@5.0.1 --save-dev
 O módulo cross-env nos permite setar as variáveis de ambiente cross platform. 
     "build-prod": "cross-env NODE_ENV=production webpack  --config webpack.config.js"
 
+npm install webpack-dev-server@2.5.1 --save-dev
+O responsável por fazer o build do projeto será webpack-dev-server, que chamará o webpack.config.js.
+
 
 
 
