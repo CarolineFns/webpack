@@ -39,7 +39,20 @@ __dirname - variável do NodeJS - informa qual a diretório do webpack.config
 
 path.resolve() criará o caminho completo até a pasta dist, com base na pasta client
 
+"build-dev": "webpack -p --config webpack.config.js"
+ O Uglify, minificador embutido no webpack só teria problema caso o código fosse escrito em ESCMASCRIPT 2015 (ES6) ou superior.
+
+npm install babili-webpack-plugin@0.1.1 --save-dev
+
+Um build de desenvolvimento é mais rápido que um build de produção.
+
+npm install cross-env@5.0.1 --save-dev
+O módulo cross-env nos permite setar as variáveis de ambiente cross platform. 
+    "build-prod": "cross-env NODE_ENV=production webpack  --config webpack.config.js"
 
 
-.
+
+
+"build-prod": "NODE_ENV=production webpack --config webpack.config.js"
+
 
