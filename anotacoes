@@ -107,5 +107,20 @@ plugins.push(new optimizeCSSAssetsPlugin({
 Webpack Dev Server é um servidor capaz de ler as configurações de webpack.config.js ao ser carregado.
 Webpack Dev server é baixado através do npm, pois é nada mais nada menos do que um módulo do Node.js.
 
+Podemos importar scripts diretamente da pasta node_modules através da instrução import
+
+npm install jquery@3.2.1 --save
+import 'jquery/dist/jquery.js';
+import 'bootstrap/js/modal.js
+
+Correto. Um caso clássico é a dependência do jQuery pelo script do Bootstrap. O script do Bootstrap não o importa com a instrução import (até porque ele não foi criado por nós), mas o procura no escopo global. Por mais que tentemos importar o jQuery com a instrução import antes do script do Bootstrap, o jQuery estará isolado em uma closure por ter sido tratado como um módulo e isso não permitirá que ele seja acessível por outros script que dependem dele.
+
+const webpack = require('webpack');
+plugins.push(
+    new webpack.ProvidePlugin({
+           '$': 'jquery/dist/jquery.js',
+           'jQuery': 'jquery/dist/jquery.js'
+    })
+);
 
 
