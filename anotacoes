@@ -123,4 +123,47 @@ plugins.push(
     })
 );
 
+a partir do Webpack 3, podemos ativar o Scope Hoisting. Ele consiste em concatenar o escopo de todos os módulos em um único wrapper, permitindo assim que nosso código seja executado mais rapidamente no navegador;
+acelera o tipo de processamento e carregamento no navegador,tempo no qual os módulos são parseados, executados e processados
+plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
+
+
+-------------------------------------------------------------
+O CommonsChunkPlugin vai nos ajudar a fatiar a nossa aplicação, com ele, será criado um módulo que receberá o nome de vendor. Nele, todas as bibliotecas criadas por terceiros e o bundle.js será um arquivo enxuto.
+
+plugins.push(
+    new webpack.optimize.CommonsChunkPlugin(
+        { 
+            name: 'vendor', 
+            filename: 'vendor.bundle.js'
+        }
+    )
+);
+
+entry: {
+        app: './app-src/app.js',
+        vendor: ['jquery', 'bootstrap', 'reflect-metadata']
+    },
+--------------------------------------------------------
+pra não precisar ficar importando tudo no index.html
+
+remove         publicPath: 'dist'
+npm install html-webpack-plugin@2.29.0 --save-dev
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+plugins.push(new HtmlWebpackPlugin({
+    hash: true,
+    minify: {
+        html5: true,
+        collapseWhitespace: true,
+        removeComments: true,
+    },    
+    filename: 'index.html',
+    template: __dirname + '/main.html'
+}));
+
+hash => no fim para ajudar a invalidar o cache
+collapseWhitespace => responsável pela remoção de espaço entre as tags
+removeComments => remove comentários
+
 
