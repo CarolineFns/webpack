@@ -166,4 +166,25 @@ hash => no fim para ajudar a invalidar o cache
 collapseWhitespace => responsável pela remoção de espaço entre as tags
 removeComments => remove comentários
 
+-----------------------------------------------------
+se a aplicação tiver muitos módulos, o bundle.js vai ficar imenso
+Um estratégia utilizada para a resolução de problemas como esse é o code splitting (separação de código) e o lazy loading (carregamento preguiçoso). Em aplicação como AngularJS ou VueJS, em seus sistemas de rotas, podemos informar que queremos carregar um módulo no momento em que for necessário.
+A aplicação não será carregada com esse módulo, ele ficará em back-end separado, e quando acessarmos o módulo pela primeira vez, ele será carregado pelo framework uma única vez.
+A aplicação não será carregada com esse módulo, ele ficará em back-end separado, e quando acessarmos o módulo pela primeira vez, ele será carregado pelo framework uma única vez.
+
+const { NegociacaoService } = await System.import('../domain/negociacao/NegociacaoService');
+const service = new NegociacaoService();         
+const negociacoes = await service.obtemNegociacoesDoPeriodo();
+
+------------------------------------------------------------
+O System.import() é uma maneira utilizada pelo Webpack para fazer o carregamento assíncrono sob demanda de módulos. Porém, o ECMAScript nas versões mais atuais, usa uma sintaxe específica para carregamento nestes casos, fazendo o uso da função import().
+
+npm install babel-plugin-syntax-dynamic-import@6.18.0 --save-dev
+acrescentar em .babelrc
+"plugins" : ["babel-plugin-syntax-dynamic-import"]
+
+-------------------------------------------------------------
+
+
+
 
